@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>{{ name }} | OpenFlowPlugin Jenkins Dashboard</title>
+    <meta name="description" content="OpenDaylight OpenFlowPlugin Jenkins dashboard for {{ name }}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Disable caching -->
+    <meta http-equiv="cache-control" content="max-age=0" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+    <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+    <meta http-equiv="pragma" content="no-cache" />
+
+    <!-- Bootstrap and FontAwesome to reduce boilerplate -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/{{ theme }}/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+
+    <!-- Custom styling -->
+    <style type="text/css">
+      body {
+        padding-top: 70px;
+      }
+
+      .fixed {
+        position: fixed;
+      }
+
+      .margined {
+        margin-top: 5px;
+      }
+
+      .container {
+        width: auto;
+      }
+
+      .img-responsive {
+        width: 100%;
+      }
+
+      .bs-docs-sidebar {
+        padding-left: 20px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+
+      .bs-docs-sidebar .nav>li>a {
+        color: #999;
+        border-left: 2px solid transparent;
+        padding: 4px 20px;
+        font-size: 17px;
+        font-weight: 400;
+      }
+
+      .bs-docs-sidebar .nav .nav>li>a {
+        padding-top: 1px;
+        padding-bottom: 1px;
+        padding-left: 30px;
+        font-size: 15px;
+      }
+
+      .bs-docs-sidebar .nav>.active>a,
+      .bs-docs-sidebar .nav>li>a:hover,
+      .bs-docs-sidebar .nav>li>a:focus {
+        color: #333333;
+        text-decoration: none;
+        background-color: transparent;
+        border-left-color: #333333;
+      }
+
+      .bs-docs-sidebar .nav>.active>a,
+      .bs-docs-sidebar .nav>.active:hover>a,
+      .bs-docs-sidebar .nav>.active:focus>a {
+        font-weight: 700;
+      }
+
+      .bs-docs-sidebar .nav .nav>.active>a,
+      .bs-docs-sidebar .nav .nav>.active:hover>a,
+      .bs-docs-sidebar .nav .nav>.active:focus>a {
+        font-weight: 500;
+      }
+
+      .bs-docs-sidebar .nav ul.nav {
+        display: none;
+      }
+
+      .bs-docs-sidebar .nav>.active>ul.nav {
+        display: block;
+      }
+    </style>
+  </head>
+
+  <body data-spy="scroll" data-target="#sidebar" data-offset="110">
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">OpenFlowPlugin Jenkins dashboard for <b>{{ name }}</b></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="hidden-md hidden-sm hidden-xs">
+              <a href="#" id="toggle-sidebar"><i class="fa fa-list fa-fw"></i>
+                <span id="toggle-sidebar-hide">Hide</span>
+                <span id="toggle-sidebar-show" class="hidden">Show</span>
+                sidebar
+              </a>
+            </li>
+            <li>
+              <a href="#" id="toggle-details">
+                <i class="fa fa-info fa-fw"></i>
+                <span id="toggle-details-hide">Hide</span>
+                <span id="toggle-details-show" class="hidden">Show</span>
+                details
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <section id="body" class="container">
+      <div class="row">
+        <!-- Sidebar -->
+        <nav id="sidebar" class="col-md-2 bs-docs-sidebar hidden-md hidden-sm hidden-xs">
+          <ul id="sidebar" class="nav nav-stacked fixed">
+            <li>
+              <a href="#Functional"><i class="fa fa-fw fa-gears"></i> Functional Test Suites</a>
+              <ul class="nav nav-stacked">
+                <li><a href="#1_node_flow_services">Single Node</a></li>
+                <li><a href="#3_node_cluster">3 Node Cluster</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="#Scalability"><i class="fa fa-fw fa-server"></i> Scalability Tests</a>
+              <ul class="nav nav-stacked">
+                <li><a href="#switch_scalability">Switch scalability</a></li>
+                <li><a href="#link_scalability">Link scalability</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="#Performance"><i class="fa fa-fw fa-rocket"></i> Performance Tests</a>
+              <ul class="nav nav-stacked">
+                <li><a href="#restconf_addflow_performance">Add Flow Performance</a></li>
+                <li><a href="#cbench_performance">Cbench Performance</a></li>
+                <li><a href="#statistics_collection_frm">Statistics Collection FRM</a></li>
+                <li><a href="#statistics_collection_frs">Statistics Collection FRS</a></li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+
+        <!--Main content -->
+        <div id="content" class="col-md-10">
+          <section id="Functional">
+            <h3 class="page-header"><i class="fa fa-fw fa-gears"></i> Functional Test Suites</h3>
+            <section id="1_node_flow_services">
+              <div class="panel panel-default">
+                <div class="panel-heading"><h3 class="panel-title">Single Node</h3></div>
+                <div class="panel-footer">
+                  This test is covering flow services failures in single node.
+                </div>
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <h4 class="text-center">FRM</h4>
+                      <hr/>
+                      <a href="https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-1node-flow-services-only-{{ branch }}/" target="_blank" data-toggle="tooltip" title="Navigate to Jenkins job">
+                        <img class="img-responsive" src="https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-1node-flow-services-only-{{ branch }}/robot/graph?hd=true&failedOnly=false&criticalOnly=false&maxBuildsToShow=0"
+                        onerror="this.parentElement.style.display='none'"/>
+                      </a>
+                    </div>
+                    <div class="col-lg-6">
+                      <h4 class="text-center">FRS</h4>
+                      <hr/>
+                      <a href="https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-1node-flow-services-frs-only-{{ branch }}/" target="_blank" data-toggle="tooltip" title="Navigate to Jenkins job">
+                        <img class="img-responsive" src="https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-1node-flow-services-frs-only-{{ branch }}/robot/graph?hd=true&failedOnly=false&criticalOnly=false&maxBuildsToShow=0"
+                        onerror="this.parentElement.style.display='none'"/>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel-footer text-center">
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <p class="margined h4"><span class="label label-success">Passed tests</span></p>
+                      <p class="margined h4"><span class="label label-danger">Failed tests</span></p>
+                    </div>
+                    <div class="col-lg-6">
+                      <p class="margined h4"><span class="label label-success">Passed tests</span></p>
+                      <p class="margined h4"><span class="label label-danger">Failed tests</span></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <section id="3_node_cluster">
+              <div class="panel panel-default">
+                <div class="panel-heading"><h3 class="panel-title">3 Node Cluster</h3></div>
+                <div class="panel-footer">
+                  This test is covering failures in cluster. Test cases includes switch disconnect and failure of cluster node. Failure of cluster node consist of two separate test cases, one to check when node is just isolated, but Karaf is still running and second one is that karaf is shut down and then restarted again.
+                </div>
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <a href="https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-3node-clustering-only-{{ branch }}/" target="_blank" data-toggle="tooltip" title="Navigate to Jenkins job">
+                        <img class="img-responsive" src="https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-3node-clustering-only-{{ branch }}/robot/graph?hd=true&failedOnly=false&criticalOnly=false&maxBuildsToShow=0"
+                        onerror="this.parentElement.style.display='none'"/>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel-footer text-center">
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <p class="margined h4"><span class="label label-success">Passed tests</span></p>
+                      <p class="margined h4"><span class="label label-danger">Failed tests</span></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </section>
+          <section id="Scalability">
+            <h3 class="page-header"><i class="fa fa-fw fa-server"></i> Scalability Tests</h3>
+            <section id="switch_scalability">
+              <div class="panel panel-default">
+                <div class="panel-heading"><h3 class="panel-title">Switch scalability</h3></div>
+                <div class="panel-footer">
+                  Connects switches, checks and disconnects.
+                </div>
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <h4 class="text-center">Maximum number of switches</h4>
+                      <hr/>
+                      <a
+                        href="https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-1node-periodic-sw-scalability-daily-only-{{ branch }}/"
+                        target="_blank"
+                        data-toggle="tooltip"
+                        title="Navigate to Jenkins job">
+                        <img
+                          class="img-responsive"
+                          src="https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-1node-periodic-sw-scalability-daily-only-{{branch}}/plot/Switch%20Scalability/getPlot?index=0"
+                          onerror="this.parentElement.style.display='none'"/>
+                      </a>
+                    </div>
+                    <div class="col-lg-6">
+                      <h4 class="text-center">Topology discovery time</h4>
+                      <hr/>
+                      <a
+                        href="https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-1node-periodic-sw-scalability-daily-only-{{ branch }}/"
+                        target="_blank"
+                        data-toggle="tooltip"
+                        title="Navigate to Jenkins job">
+                        <img
+                          class="img-responsive"
+                          src="https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-1node-periodic-sw-scalability-daily-only-{{branch}}/plot/Switch%20Scalability/getPlot?index=1"
+                          onerror="this.parentElement.style.display='none'"/>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel-footer text-center">
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <p class="margined h4"><span class="label label-info">Maximum # of switches during test</span> - Higher is better</p>
+                    </div>
+                    <div class="col-lg-6">
+                      <p class="margined h4"><span class="label label-danger">Time needed for full topology discovery during test</span> - Lower is better</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <section id="link_scalability">
+              <div class="panel panel-default">
+                <div class="panel-heading"><h3 class="panel-title">Link scalability</h3></div>
+                <div class="panel-footer">
+                  Connects switches, checks and disconnects.
+                </div>
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <h4 class="text-center">Maximum number of links</h4>
+                      <hr/>
+                      <a
+                        href="https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-1node-periodic-link-scalability-daily-only-{{ branch }}/"
+                        target="_blank"
+                        data-toggle="tooltip"
+                        title="Navigate to Jenkins job">
+                        <img
+                          class="img-responsive"
+                          src="https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-1node-periodic-link-scalability-daily-only-{{branch }}/plot/Link%20Scalability/getPlot?index=0"
+                          onerror="this.parentElement.style.display='none'"/>
+                      </a>
+                    </div>
+                    <div class="col-lg-6">
+                      <h4 class="text-center">Topology discovery time</h4>
+                      <hr/>
+                      <a
+                        href="https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-1node-periodic-link-scalability-daily-only-{{ branch }}/"
+                        target="_blank"
+                        data-toggle="tooltip"
+                        title="Navigate to Jenkins job">
+                        <img
+                          class="img-responsive"
+                          src="https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-1node-periodic-link-scalability-daily-only-{{branch}}/plot/Link%20Scalability/getPlot?index=1"
+                          onerror="this.parentElement.style.display='none'"/>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel-footer text-center">
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <p class="margined h4"><span class="label label-info">Maximum # of links during test</span> - Higher is better</p>
+                    </div>
+                    <div class="col-lg-6">
+                      <p class="margined h4"><span class="label label-danger">Time needed for full topology discovery
+                          during test</span> - Lower is better</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </section>
+          <section id="Performance">
+            <h3 class="page-header"><i class="fa fa-fw fa-rocket"></i> Performance Tests</h3>
+            <section id="restconf_addflow_performance">
+              <div class="panel panel-default">
+                <div class="panel-heading"><h3 class="panel-title">Add Flow Performance</h3></div>
+                <div class="panel-footer">
+                  Add flow performance
+                </div>
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <h4 class="text-center">Add Flow Rate</h4>
+                      <hr/>
+                      <a
+                        href="https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-1node-periodic-bulkomatic-perf-daily-only-{{ branch }}/" target="_blank" data-toggle="tooltip" title="Navigate to Jenkins job">
+                        <img class="img-responsive"
+                        src="https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-1node-periodic-bulkomatic-perf-daily-only-{{ branch }}/plot/Java%20Performance/getPlot?index=0" title="Robot framework test - Lithium"
+                        onerror="this.parentElement.style.display='none'"/>
+                      </a>
+                    </div>
+                    <div class="col-lg-6">
+                      <h4 class="text-center">Add Flow Time</h4>
+                      <hr/>
+                      <a
+                        href="https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-1node-periodic-bulkomatic-perf-daily-only-{{ branch }}/" target="_blank" data-toggle="tooltip" title="Navigate to Jenkins job">
+                        <img class="img-responsive"
+                        src="https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-1node-periodic-bulkomatic-perf-daily-only-{{ branch }}/plot/Java%20Performance/getPlot?index=1" title="Robot framework test - Lithium"
+                        onerror="this.parentElement.style.display='none'"/>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel-footer text-center">
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <p class="margined h4"><span class="label label-danger">Configuration datastore</span> - Higher is better</p>
+                      <p class="margined h4"><span class="label label-success">Switch</span> - Higher is better</p>
+                      <p class="margined h4"><span class="label label-info">Operational datastore</span> - Higher is better</p>
+                    </div>
+                    <div class="col-lg-6">
+                      <p class="margined h4"><span class="label label-danger">Configuration datastore</span> - Lower is better</p>
+                      <p class="margined h4"><span class="label label-success">Switch</span> - Lower is better</p>
+                      <p class="margined h4"><span class="label label-info">Operational datastore</span> - Lower is better</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <section id="cbench_performance">
+              <div class="panel panel-default">
+                <div class="panel-heading"><h3 class="panel-title">Cbench Performance</h3></div>
+                <div class="panel-footer">
+                  Emulates a bunch of OpenFlow switches which connect to a controller, send packet-in messages, and watch for flow-mods to get pushed down.
+                </div>
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <h4 class="text-center">Latency</h4>
+                      <hr/>
+                      <a
+                        href="https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-1node-periodic-cbench-daily-only-{{ branch }}/" target="_blank" data-toggle="tooltip" title="Navigate to Jenkins job">
+                        <img class="img-responsive"
+                        src="https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-1node-periodic-cbench-daily-only-{{ branch }}/plot/Cbench%20Performance/getPlot?index=0"
+                        onerror="this.parentElement.style.display='none'"/>
+                      </a>
+                    </div>
+                    <div class="col-lg-6">
+                      <h4 class="text-center">Throughput</h4>
+                      <hr/>
+                      <a
+                        href="https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-1node-periodic-cbench-daily-only-{{ branch }}/" target="_blank" data-toggle="tooltip" title="Navigate to Jenkins job">
+                        <img class="img-responsive"
+                        src="https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-1node-periodic-cbench-daily-only-{{ branch }}/plot/Cbench%20Performance/getPlot?index=1"
+                        onerror="this.parentElement.style.display='none'"/>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel-footer text-center">
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <p class="margined h4"><span class="label label-danger">Minimum FLOW_MOD/s</span> - Higher is better</p>
+                      <p class="margined h4"><span class="label label-success">Maximum FLOW_MOD/s</span> - Higher is better</p>
+                      <p class="margined h4"><span class="label label-info">Average FLOW_MOD/s</span> - Higher is better</p>
+                    </div>
+                    <div class="col-lg-6">
+                      <p class="margined h4"><span class="label label-danger">Minimum FLOW_MOD/s</span> - Higher is better</p>
+                      <p class="margined h4"><span class="label label-success">Maximum FLOW_MOD/s</span> - Higher is better</p>
+                      <p class="margined h4"><span class="label label-info">Average FLOW_MOD/s</span> - Higher is better</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <section id="statistics_collection_frm">
+              <div class="panel panel-default">
+                <div class="panel-heading"><h3 class="panel-title">Statistics Collection FRM</h3></div>
+                <div class="panel-footer">
+                  Statistics collection using POST to config/DS with FRM installed
+                </div>
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <h4 class="text-center">Collection rate</h4>
+                      <hr/>
+                      <a
+                        href="https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-1node-periodic-gate-scale-stats-collection-daily-only-{{ branch }}/" target="_blank" data-toggle="tooltip" title="Navigate to Jenkins job">
+                        <img class="img-responsive"
+                        src="https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-1node-periodic-gate-scale-stats-collection-daily-only-{{ branch }}/plot/Stats%20Collection%20Performance/getPlot?index=0"
+                        onerror="this.parentElement.style.display='none'"/>
+                      </a>
+                    </div>
+                    <div class="col-lg-6">
+                      <h4 class="text-center">Collection time</h4>
+                      <hr/>
+                      <a
+                        href="https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-1node-periodic-gate-scale-stats-collection-daily-only-{{ branch }}/" target="_blank" data-toggle="tooltip" title="Navigate to Jenkins job">
+                        <img class="img-responsive"
+                        src="https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-1node-periodic-gate-scale-stats-collection-daily-only-{{ branch }}/plot/Stats%20Collection%20Performance/getPlot?index=1"
+                        onerror="this.parentElement.style.display='none'"/>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel-footer text-center">
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <p class="margined h4"><span class="label label-danger">Initial collection time</span> - Lower is better</p>
+                      <p class="margined h4"><span class="label label-info">Collection time after Mininet restart</span> - Lower is better</p>
+                    </div>
+                    <div class="col-lg-6">
+                      <p class="margined h4"><span class="label label-danger">Initial collection time</span> - Lower is better</p>
+                      <p class="margined h4"><span class="label label-info">Collection time after Mininet restart</span> - Lower is better</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <section id="statistics_collection_frs">
+              <div class="panel panel-default">
+                <div class="panel-heading"><h3 class="panel-title">Statistics Collection FRS</h3></div>
+                <div class="panel-footer">
+                  Statistics collection using POST to config/DS
+                </div>
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <h4 class="text-center">Collection rate</h4>
+                      <hr/>
+                      <a href="https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-1node-periodic-scale-stats-collection-daily-frs-only-{{ branch }}/" target="_blank" data-toggle="tooltip" title="Navigate to Jenkins job">
+                        <img class="img-responsive"
+                        src="https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-1node-periodic-scale-stats-collection-daily-frs-only-{{ branch }}/plot/Performance%20Rate/getPlot?index=0"
+                        onerror="this.parentElement.style.display='none'"/>
+                      </a>
+                    </div>
+                    <div class="col-lg-6">
+                      <h4 class="text-center">Collection time</h4>
+                      <hr/>
+                      <a href="https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-1node-periodic-scale-stats-collection-daily-frs-only-{{ branch }}/" target="_blank" data-toggle="tooltip" title="Navigate to Jenkins job">
+                        <img class="img-responsive" src="https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-1node-periodic-scale-stats-collection-daily-frs-only-{{ branch }}/plot/Config%20Performance/getPlot?index=0"
+                        onerror="this.parentElement.style.display='none'"/>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel-footer text-center">
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <p class="margined h4"><span class="label label-danger">Flow setup time</span> - Lower is better</p>
+                      <p class="margined h4"><span class="label label-info">Flow setup rate</span> - Lower is better</p>
+                    </div>
+                    <div class="col-lg-6">
+                      <p class="margined h4"><span class="label label-danger">Initial collection time</span> - Lower is better</p>
+                      <p class="margined h4"><span class="label label-info">Collection time after Mininet restart</span> - Lower is better</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer" class="navbar-default">
+      <div class="container">
+        <p class="navbar-text">
+          <span><a href="#" id="toTop"><i class="fa fa-fw fa-arrow-up"></i> Back to top</a></span>
+        </p>
+      </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script>
+      $(function () {
+        $('[data-toggle="tooltip"]').tooltip({
+          placement: 'top'
+        })
+      });
+
+      $('#sidebar li a').click(function(event) {
+        event.preventDefault();
+        $($(this).attr('href'))[0].scrollIntoView();
+        scrollBy(0, -60);
+      });
+
+      $('#toggle-sidebar').click(function(event) {
+        event.preventDefault();
+        $('#toggle-sidebar-hide').toggleClass('hidden');
+        $('#toggle-sidebar-show').toggleClass('hidden');
+        $('#sidebar').toggleClass('hidden');
+        $('#content').toggleClass('col-md-10');
+        $('#content').toggleClass('col-md-12');
+      });
+
+      $('#toggle-details').click(function(event) {
+        event.preventDefault();
+        $('#toggle-details-hide').toggleClass('hidden');
+        $('#toggle-details-show').toggleClass('hidden');
+        $('.panel-footer').toggleClass('hidden');
+      });
+    </script>
+  </body>
+</html>

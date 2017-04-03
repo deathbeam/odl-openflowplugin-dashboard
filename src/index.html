@@ -148,7 +148,8 @@
             <li>
               <a href="#Performance"><i class="fa fa-fw fa-rocket"></i> Performance Tests</a>
               <ul class="nav nav-stacked">
-                <li><a href="#restconf_addflow_performance">Add Flow Performance</a></li>
+                <li><a href="#addflow_performance">Add Flow Performance</a></li>
+                <li><a href="#addflow_cluster_performance">Add Flow Cluster Performance</a></li>
                 <li><a href="#cbench_performance">Cbench Performance</a></li>
                 <li><a href="#statistics_collection_frm">Statistics Collection FRM</a></li>
                 <li><a href="#statistics_collection_frs">Statistics Collection FRS</a></li>
@@ -334,7 +335,7 @@
           </section>
           <section id="Performance">
             <h3 class="page-header"><i class="fa fa-fw fa-rocket"></i> Performance Tests</h3>
-            <section id="restconf_addflow_performance">
+            <section id="addflow_performance">
               <div class="panel panel-default">
                 <div class="panel-heading"><h3 class="panel-title">Add Flow Performance</h3></div>
                 <div class="panel-footer">
@@ -359,6 +360,52 @@
                         href="https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-1node-periodic-bulkomatic-perf-daily-only-{{ branch }}/" target="_blank" data-toggle="tooltip" title="Navigate to Jenkins job">
                         <img class="img-responsive"
                         src="https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-1node-periodic-bulkomatic-perf-daily-only-{{ branch }}/plot/Java%20Performance/getPlot?index=1" title="Robot framework test - Lithium"
+                        onerror="this.parentElement.style.display='none'"/>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel-footer text-center">
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <p class="margined h4"><span class="label label-danger">Configuration datastore</span> - Higher is better</p>
+                      <p class="margined h4"><span class="label label-success">Switch</span> - Higher is better</p>
+                      <p class="margined h4"><span class="label label-info">Operational datastore</span> - Higher is better</p>
+                    </div>
+                    <div class="col-lg-6">
+                      <p class="margined h4"><span class="label label-danger">Configuration datastore</span> - Lower is better</p>
+                      <p class="margined h4"><span class="label label-success">Switch</span> - Lower is better</p>
+                      <p class="margined h4"><span class="label label-info">Operational datastore</span> - Lower is better</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <section id="addflow_cluster_performance">
+              <div class="panel panel-default">
+                <div class="panel-heading"><h3 class="panel-title">Add Flow Cluster Performance</h3></div>
+                <div class="panel-footer">
+                  Add flow cluster performance
+                </div>
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <h4 class="text-center">Add Flow Rate</h4>
+                      <hr/>
+                      <a
+                        href="https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-3node-periodic-bulkomatic-clustering-perf-daily-only-{{ branch }}/" target="_blank" data-toggle="tooltip" title="Navigate to Jenkins job">
+                        <img class="img-responsive"
+                        src="https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-3node-periodic-bulkomatic-clustering-perf-daily-only-{{ branch }}/plot/Java%20Performance/getPlot?index=0" title="Robot framework test - Lithium"
+                        onerror="this.parentElement.style.display='none'"/>
+                      </a>
+                    </div>
+                    <div class="col-lg-6">
+                      <h4 class="text-center">Add Flow Time</h4>
+                      <hr/>
+                      <a
+                        href="https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-3node-periodic-bulkomatic-clustering-perf-daily-only-{{ branch }}/" target="_blank" data-toggle="tooltip" title="Navigate to Jenkins job">
+                        <img class="img-responsive"
+                        src="https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-3node-periodic-bulkomatic-clustering-perf-daily-only-{{ branch }}/plot/Java%20Performance/getPlot?index=1" title="Robot framework test - Lithium"
                         onerror="this.parentElement.style.display='none'"/>
                       </a>
                     </div>

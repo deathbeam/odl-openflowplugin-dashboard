@@ -1,6 +1,6 @@
 {
   "name": "Boron",
-  "theme": "yeti",
+  "theme": "simplex",
   "categories": [
     {
       "id": "functional_tests",

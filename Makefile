@@ -10,5 +10,8 @@ build-boron:
 build-carbon:
 	mustache src/carbon.json src/index.html dist/carbon.html
 
-build: build-boron build-carbon
+build-nitrogen:
+	mustache src/nitrogen.json src/index.html dist/nitrogen.html
+
+build: build-boron build-carbon build-nitrogen
 

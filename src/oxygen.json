@@ -1,0 +1,146 @@
+{
+  "name": "Oxygen",
+  "theme": "simplex",
+  "categories": [
+    {
+      "id": "functional_tests",
+      "icon": "gears",
+      "name": "Functional Tests",
+      "tests": [
+        {
+          "id": "functional_tests_single_node_with_frm",
+          "name": "Single Node with FRM",
+          "description": "This test is covering flow services failures in single node with Forwarding Rules Manager feature installed.",
+          "image": "https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-1node-flow-services-only-oxygen/robot/graph?hd=true&failedOnly=false&criticalOnly=false&maxBuildsToShow=0",
+          "link": "https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-1node-flow-services-only-oxygen/"
+        },
+        {
+          "id": "functional_tests_single_node_with_frs",
+          "name": "Single Node with FRS",
+          "description": "This test is covering flow services failures in single node with Forwarding Rules Sync feature installed.",
+          "image": "https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-1node-flow-services-frs-only-oxygen/robot/graph?hd=true&failedOnly=false&criticalOnly=false&maxBuildsToShow=0",
+          "link": "https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-1node-flow-services-frs-only-oxygen/"
+        },
+        {
+          "id": "functional_tests_3_node_cluster",
+          "name": "3 Node Cluster",
+          "description": "This test is covering failures in cluster. Test cases includes switch disconnect and failure of cluster node. Failure of cluster node consist of two separate test cases, one to check when node is just isolated, but Karaf is still running and second one is that karaf is shut down and then restarted again.",
+          "image": "https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-3node-clustering-only-oxygen/robot/graph?hd=true&failedOnly=false&criticalOnly=false&maxBuildsToShow=0",
+          "link": "https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-3node-clustering-only-oxygen/"
+        }
+      ]
+    },
+    {
+      "id": "scalability_tests",
+      "icon": "server",
+      "name": "Scalability Tests",
+      "tests": [
+        {
+          "id": "scalability_tests_maximum_number_of_switches_linear",
+          "name": "Maximum number of switches (linear topology)",
+          "description": "This test checks maximum number of switches in linear topology",
+          "image": "https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-1node-periodic-sw-scalability-daily-only-oxygen/plot/Switch%20Scalability/getPlot?index=0",
+          "link": "https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-1node-periodic-sw-scalability-daily-only-oxygen/"
+        },
+        {
+          "id": "scalability_tests_topology_discovery_time_linear",
+          "name": "Topology discovery time (linear topology)",
+          "description": "This test checks topology discovery time for linear topology during maximum number of switches for linear topology test.",
+          "image": "https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-1node-periodic-sw-scalability-daily-only-oxygen/plot/Switch%20Scalability/getPlot?index=1",
+          "link": "https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-1node-periodic-sw-scalability-daily-only-oxygen/"
+        },
+        {
+          "id": "scalability_tests_maximum_number_of_links",
+          "name": "Maximum number of links (full mesh topology)",
+          "description": "This test checks maximum number of links in full mesh topology",
+          "image": "https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-1node-periodic-link-scalability-daily-only-oxygen/plot/Link%20Scalability/getPlot?index=0",
+          "link": "https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-1node-periodic-link-scalability-daily-only-oxygen/"
+        },
+        {
+          "id": "scalability_tests_topology_discovery_time_full_mesh",
+          "name": "Topology discovery time (full mesh topology)",
+          "description": "This test checks topology discovery time for full mesh topology during maximum number of links for full mesh topology test.",
+          "image": "https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-1node-periodic-link-scalability-daily-only-oxygen/plot/Link%20Scalability/getPlot?index=1",
+          "link": "https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-1node-periodic-link-scalability-daily-only-oxygen/"
+        }
+      ]
+    },
+    {
+      "id": "performance_tests",
+      "icon": "rocket",
+      "name": "Performance Tests",
+      "tests": [
+        {
+          "id": "performance_tests_single_node_flow_add_rate",
+          "name": "Single Node Flow Add Rate",
+          "description": "This test checks for rate of flow add operation on single node using various methods.",
+          "image": "https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-1node-periodic-bulkomatic-perf-daily-only-oxygen/plot/Java%20Performance/getPlot?index=0",
+          "link": "https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-1node-periodic-bulkomatic-perf-daily-only-oxygen/"
+        },
+        {
+          "id": "performance_tests_single_node_flow_add_time",
+          "name": "Single Node Flow Add Time",
+          "description": "This test checks for time of flow add operation on single node using various methods.",
+          "image": "https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-1node-periodic-bulkomatic-perf-daily-only-oxygen/plot/Java%20Performance/getPlot?index=1",
+          "link": "https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-1node-periodic-bulkomatic-perf-daily-only-oxygen/"
+        },
+        {
+          "id": "performance_tests_cluster_flow_add_rate",
+          "name": "Cluster Flow Add Rate",
+          "description": "This test checks for rate of flow add operation in cluster using various methods.",
+          "image": "https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-3node-periodic-bulkomatic-clustering-perf-daily-only-oxygen/plot/Java%20Performance/getPlot?index=0",
+          "link": "https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-3node-periodic-bulkomatic-clustering-perf-daily-only-oxygen/"
+        },
+        {
+          "id": "performance_tests_cluster_flow_add_time",
+          "name": "Cluster Flow Add Time",
+          "description": "This test checks for time of flow add operation in cluster using various methods.",
+          "image": "https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-3node-periodic-bulkomatic-clustering-perf-daily-only-oxygen/plot/Java%20Performance/getPlot?index=1",
+          "link": "https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-3node-periodic-bulkomatic-clustering-perf-daily-only-oxygen/"
+        },
+        {
+          "id": "performance_tests_cbench_latency",
+          "name": "Cbench Latency",
+          "description": "Emulates a bunch of OpenFlow switches which connect to a controller, send packet-in messages, and watch for flow-mods to get pushed down.",
+          "image": "https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-1node-periodic-cbench-daily-only-oxygen/plot/Cbench%20Performance/getPlot?index=0",
+          "link": "https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-1node-periodic-cbench-daily-only-oxygen/"
+        },
+        {
+          "id": "performance_tests_cbench_throughput",
+          "name": "Cbench Throughput",
+          "description": "Emulates a bunch of OpenFlow switches which connect to a controller, send packet-in messages, and watch for flow-mods to get pushed down.",
+          "image": "https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-1node-periodic-cbench-daily-only-oxygen/plot/Cbench%20Performance/getPlot?index=1",
+          "link": "https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-1node-periodic-cbench-daily-only-oxygen/"
+        },
+        {
+          "id": "performance_tests_stat_collection_rate_frm",
+          "name": "Statistics Collection Rate with FRM",
+          "description": "Statistics collection rate using POST to config/DS with FRM installed",
+          "image": "https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-1node-periodic-gate-scale-stats-collection-daily-only-oxygen/plot/Stats%20Collection%20Performance/getPlot?index=0",
+          "link": "https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-1node-periodic-gate-scale-stats-collection-daily-only-oxygen/"
+        },
+        {
+          "id": "performance_tests_stat_collection_time_frm",
+          "name": "Statistics Collection Time with FRM",
+          "description": "Statistics collection time using POST to config/DS with FRM installed",
+          "image": "https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-1node-periodic-gate-scale-stats-collection-daily-only-oxygen/plot/Stats%20Collection%20Performance/getPlot?index=1",
+          "link": "https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-1node-periodic-gate-scale-stats-collection-daily-only-oxygen/"
+        },
+        {
+          "id": "performance_tests_stat_collection_rate_frs",
+          "name": "Statistics Collection Rate with FRS",
+          "description": "Statistics collection rate using POST to config/DS with FRS installed",
+          "image": "https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-1node-periodic-scale-stats-collection-daily-frs-only-oxygen/plot/Performance%20Rate/getPlot?index=0",
+          "link": "https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-1node-periodic-scale-stats-collection-daily-frs-only-oxygen/"
+        },
+        {
+          "id": "performance_tests_stat_collection_time_frs",
+          "name": "Statistics Collection Time with FRS",
+          "description": "Statistics collection time using POST to config/DS with FRS installed",
+          "image": "https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-1node-periodic-scale-stats-collection-daily-frs-only-oxygen/plot/Config%20Performance/getPlot?index=0",
+          "link": "https://jenkins.opendaylight.org/releng/view/openflowplugin/job/openflowplugin-csit-1node-periodic-scale-stats-collection-daily-frs-only-oxygen/"
+        }
+      ]
+    }
+  ]
+}
